@@ -28,14 +28,15 @@ jobs:
           docker save -o "${{ github.event.inputs.fileName2 }}.tar" ${{ github.event.inputs.fileName }}
           ls -a
           mv "./${{ github.event.inputs.fileName2 }}.tar" "files/${{ github.event.inputs.folderName }}/"
+      - uses: edgarrc/action-7z@v1
+        with:
+          args: 7z a -v50m "{{ github.event.inputs.fileName2 }}.tar.7z" "${{ github.event.inputs.fileName2 }}.tar"
       - name: Commit changes
         run: |
           git init
-          git lfs install
-          git lfs track "*.tar"
           git config --global user.email "lalit-ku@hcl.com"
           git config --global user.name "lalitKumarHCL"
-          git add *.tar
+          git add *.7z
           git commit -m "adding ${{ github.event.inputs.fileName }}"
           git branch -M main
           git push -u origin main
