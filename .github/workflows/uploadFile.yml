@@ -30,7 +30,7 @@ jobs:
           mv "./${{ github.event.inputs.fileName2 }}.tar" "files/${{ github.event.inputs.folderName }}/"
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z a -v50m "{{ github.event.inputs.fileName2 }}.tar.7z" "${{ github.event.inputs.fileName2 }}.tar"
+          args: 7z a -v50m "{{ github.event.inputs.fileName2 }}.tar.7z" "./${{ github.event.inputs.fileName2 }}.tar"
       - name: Commit changes
         run: |
           git init
