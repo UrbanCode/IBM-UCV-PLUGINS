@@ -28,6 +28,7 @@ jobs:
           docker save -o "${{ github.event.inputs.fileName2 }}.tar" ${{ github.event.inputs.fileName }}
           ls -a
           mv "./${{ github.event.inputs.fileName2 }}.tar" "files/${{ github.event.inputs.folderName }}/"
+          cd "files/${{ github.event.inputs.folderName }}/"
       - uses: edgarrc/action-7z@v1
         with:
           args: 7z a -v50m "{{ github.event.inputs.fileName2 }}.tar.7z" "./${{ github.event.inputs.fileName2 }}.tar"
