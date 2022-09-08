@@ -32,13 +32,13 @@ jobs:
           ls -a
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/{{ github.event.inputs.fileName2 }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar"
+          args: 7z a -v10m "./files/${{ github.event.inputs.folderName }}/{{ github.event.inputs.fileName2 }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar"
       - name: Commit changes
         run: |
           git init
           git config --global user.email "lalit-ku@hcl.com"
           git config --global user.name "lalitKumarHCL"
-          git add *.7z
+          git add *.00*
           git commit -m "adding ${{ github.event.inputs.fileName }}"
           git branch -M main
           git push -u origin main
