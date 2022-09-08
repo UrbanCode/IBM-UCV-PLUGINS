@@ -32,7 +32,7 @@ jobs:
           ls -a
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z a -v10m "./files/${{ github.event.inputs.folderName }}/{{ github.event.inputs.fileName2 }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar"
+          args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar"
       - name: Commit changes
         run: |
           git init
