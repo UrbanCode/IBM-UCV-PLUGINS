@@ -5,13 +5,12 @@ on:
     inputs:
       fileName:
         type: string
-        description: File Name
+        description: File Name (ucv-ext-abc:1.0.0)
+        required: true
       folderName:
         type: string
-        description: Folder Name
-      fileName2:
-        type: string
-        description: File Name 2
+        description: Folder Name (ucv-ext-abc)
+        required: true
 
 jobs:
   build:
@@ -24,15 +23,16 @@ jobs:
       - uses: actions/checkout@v3
       - name: Docker Pull Image and Save as TAR
         run: |
-          docker pull ${{ github.event.inputs.fileName }}
-          docker save -o "${{ github.event.inputs.fileName2 }}.tar" ${{ github.event.inputs.fileName }}
+          docker pull "urbancode/${{ github.event.inputs.fileName }}"
+          docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
-          mv "./${{ github.event.inputs.fileName2 }}.tar" "files/${{ github.event.inputs.folderName }}/"
+          mkdir -p "files/${{ github.event.inputs.folderName }}"
+          mv "./${{ github.event.inputs.fileName }}.tar" "files/${{ github.event.inputs.folderName }}/"
           cd files/${{ github.event.inputs.folderName }}/
           ls -a
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName2 }}.tar"
+          args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
         run: |
           git init
