@@ -16,6 +16,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check disk space
+        run: df . -h
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo docker rmi $(docker image ls -aq) >/dev/null 2>&1 || true
       - name: Create Folder
         run: |
           mkdir files
