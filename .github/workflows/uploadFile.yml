@@ -22,7 +22,6 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          sudo docker rmi $(docker image ls -aq) >/dev/null 2>&1 || true
       - name: Create Folder
         run: |
           mkdir files
