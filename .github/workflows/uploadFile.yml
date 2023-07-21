@@ -20,10 +20,12 @@ jobs:
         run: |
           mkdir files
           mkdir "files/${{ github.event.inputs.folderName }}"
-      - uses: actions/checkout@v3
-      - name: Docker Pull Image and Save as TAR
+      - name: Docker Pull Image
         run: |
           docker pull "urbancode/${{ github.event.inputs.fileName }}"
+      - uses: actions/checkout@v3
+      - name: Docker Save as TAR
+        run: |
           docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           mkdir -p "files/${{ github.event.inputs.folderName }}"
