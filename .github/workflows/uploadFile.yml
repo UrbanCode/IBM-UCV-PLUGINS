@@ -46,7 +46,7 @@ jobs:
           ls -a
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z a -v50m /mnt/docker/"${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" /mnt/docker/"${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
+          args: 7z a -v50m /mnt/docker/files/"${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" /mnt/docker/files/"${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
         run: |
           git init
