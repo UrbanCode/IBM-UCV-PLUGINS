@@ -44,7 +44,6 @@ jobs:
       - name: Commit changes
       - name: Cleanup Docker System
         run: |
-          docker system prune -af --volumes
           git init
           git config --global user.email "lalit-ku@hcl.com"
           git config --global user.name "lalitKumarHCL"
@@ -52,3 +51,4 @@ jobs:
           git commit -m "adding ${{ github.event.inputs.fileName }}"
           git branch -M main
           git push -u origin main
+          docker system prune -af --volumes
