@@ -26,7 +26,7 @@ jobs:
         run: |
           sudo mkdir -p /mnt/docker/tmp
           echo "TMPDIR=/mnt/docker/tmp" >> $GITHUB_ENV
-          sudo mv /var/lib/docker/tmp /var/lib/docker/tmp.old || true
+          sudo mv /var/lib/docker/tmp /mnt/docker/tmp.old || true
           sudo ln -s /mnt/docker/tmp /var/lib/docker/tmp
           mkdir files
           mkdir "files/${{ github.event.inputs.folderName }}"
