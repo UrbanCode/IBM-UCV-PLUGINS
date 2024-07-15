@@ -32,13 +32,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Docker Save as TAR
         run: |
+          df -h
           docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           mkdir -p "files/${{ github.event.inputs.folderName }}"
           mv "./${{ github.event.inputs.fileName }}.tar" "files/${{ github.event.inputs.folderName }}/"
           cd files/${{ github.event.inputs.folderName }}/
           ls -a
-          df -h
       - uses: edgarrc/action-7z@v1
         with:
           args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
