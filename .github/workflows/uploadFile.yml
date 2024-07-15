@@ -42,7 +42,6 @@ jobs:
         with:
           args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
-      - name: Cleanup Docker System
         run: |
           git init
           git config --global user.email "lalit-ku@hcl.com"
