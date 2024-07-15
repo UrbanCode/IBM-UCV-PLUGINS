@@ -22,9 +22,6 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-      - name: Cleanup Docker System
-        run: |
-          docker system prune -af --volumes
       - name: Create Folder
         run: |
           mkdir files
@@ -45,7 +42,9 @@ jobs:
         with:
           args: 7z a -v50m "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "./files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
+      - name: Cleanup Docker System
         run: |
+          docker system prune -af --volumes
           git init
           git config --global user.email "lalit-ku@hcl.com"
           git config --global user.name "lalitKumarHCL"
