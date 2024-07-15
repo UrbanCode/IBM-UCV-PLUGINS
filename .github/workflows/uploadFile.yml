@@ -38,10 +38,10 @@ jobs:
         run: |
           df -h
           ls -ltra
-          docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
+          sudo docker save -o "/mnt/docker/${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           sudo mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
-          sudo mv "./${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
+          sudo mv "/mnt/docker/${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
           cd /mnt/docker/files/${{ github.event.inputs.folderName }}/
           ls -a
       - uses: edgarrc/action-7z@v1
