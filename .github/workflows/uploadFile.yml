@@ -23,7 +23,8 @@ jobs:
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
       - name: Cleanup Docker System
-        run: docker system prune -af --volumes
+        run: |
+          docker system prune -af --volumes
       - name: Create Folder
         run: |
           mkdir files
