@@ -37,6 +37,7 @@ jobs:
       - name: Docker Save as TAR
         run: |
           df -h
+          ls -ltra
           docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           mkdir -p "files/${{ github.event.inputs.folderName }}"
