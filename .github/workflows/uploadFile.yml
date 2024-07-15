@@ -28,8 +28,8 @@ jobs:
           echo "TMPDIR=/mnt/docker/tmp" >> $GITHUB_ENV
           sudo mv /var/lib/docker/tmp /mnt/docker/tmp.old || true
           sudo ln -s /mnt/docker/tmp /var/lib/docker/tmp
-          mkdir /mnt/docker/files
-          mkdir "/mnt/docker/files/${{ github.event.inputs.folderName }}"
+          sudo mkdir /mnt/docker/files
+          sudo mkdir "/mnt/docker/files/${{ github.event.inputs.folderName }}"
       - name: Docker Pull Image
         run: |
           docker pull "urbancode/${{ github.event.inputs.fileName }}"
@@ -40,8 +40,8 @@ jobs:
           ls -ltra
           docker save -o "${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
-          mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
-          mv "./${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
+          sudo mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
+          sudo mv "./${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
           cd /mnt/docker/files/${{ github.event.inputs.folderName }}/
           ls -a
       - uses: edgarrc/action-7z@v1
