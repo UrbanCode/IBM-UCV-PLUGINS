@@ -56,6 +56,8 @@ jobs:
         run: |
           sudo 7z a -v50m "/home/runner/work/IBM-UCV-PLUGINS/IBM-UCV-PLUGINS/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pwd
           ls -lR /mnt/docker/files/${{ github.event.inputs.folderName }}/
@@ -66,5 +68,6 @@ jobs:
           git add *.00*
           git commit -m "adding ${{ github.event.inputs.fileName }}"
           git branch -M main
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git push -u origin main
           docker system prune -af --volumes
