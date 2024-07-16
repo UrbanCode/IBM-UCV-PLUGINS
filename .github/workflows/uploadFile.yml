@@ -43,16 +43,19 @@ jobs:
           sudo mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
           sudo mv "/mnt/docker/${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
           cd /mnt/docker/files/${{ github.event.inputs.folderName }}/
-          ls -l "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
+          ls -lh "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Install 7zip
         run: sudo apt-get update && sudo apt-get install -y p7zip-full
       - name: Execute 7zip
         run: sudo 7z a -v50m "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
         run: |
+          pwd
+          ls -la
+          df -h
           git init
-          git config --global user.email "lalit-ku@hcl.com"
-          git config --global user.name "lalitKumarHCL"
+          git config --global user.email "madhavaraoku@hcl.com"
+          git config --global user.name "madhavbk"
           git add *.00*
           git commit -m "adding ${{ github.event.inputs.fileName }}"
           git branch -M main
