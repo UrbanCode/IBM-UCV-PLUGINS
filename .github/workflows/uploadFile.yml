@@ -51,6 +51,7 @@ jobs:
       - name: Commit changes
         run: |
           pwd
+          sudo mv /mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.*" ./files/${{ github.event.inputs.folderName }}/
           ls -lR
           ls -lR /mnt/docker/files
           df -h 
