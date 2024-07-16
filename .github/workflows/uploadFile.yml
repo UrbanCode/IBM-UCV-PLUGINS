@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check disk space
-        run: df . -h
+        run: df -h
       - name: Free disk space
         run: |
           sudo rm -rf /usr/share/dotnet
@@ -34,6 +34,8 @@ jobs:
         run: |
           docker pull "urbancode/${{ github.event.inputs.fileName }}"
       - uses: actions/checkout@v3
+        with: 
+          path: files/${{ github.event.inputs.folderName }}
       - name: Docker Save as TAR
         run: |
           df -h
