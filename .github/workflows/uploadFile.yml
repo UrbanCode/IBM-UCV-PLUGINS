@@ -48,8 +48,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y p7zip-full
       - name: Execute 7zip
         run: |
-          sudo 7z a -v50m "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
-          sudo cp "/mnt/docker/files/${{ github.event.inputs.folderName }}/*" /home/runner/work/IBM-UCV-PLUGINS/IBM-UCV-PLUGINS/
+          sudo 7z a -v50m "/home/runner/work/IBM-UCV-PLUGINS/IBM-UCV-PLUGINS/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
         run: |
           pwd
