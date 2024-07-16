@@ -33,7 +33,8 @@ jobs:
       - name: Docker Pull Image
         run: |
           docker pull "urbancode/${{ github.event.inputs.fileName }}"
-      - uses: actions/checkout@v3
+      - name: Checkout History
+        uses: actions/checkout@v3
         with: 
           fetch-depth: 0
       - name: Set up sparse checkout
