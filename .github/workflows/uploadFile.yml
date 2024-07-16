@@ -52,7 +52,7 @@ jobs:
         run: |
           pwd
           ls -lR /mnt/docker/files/${{ github.event.inputs.folderName }}/
-          sudo mv "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.*" ./files/${{ github.event.inputs.folderName }}/
+          sudo cp "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.*" ./files/${{ github.event.inputs.folderName }}/
           df -h 
           git init
           git config --global user.email "madhavaraoku@hcl.com"
