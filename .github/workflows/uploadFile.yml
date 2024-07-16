@@ -33,15 +33,13 @@ jobs:
       - name: Docker Pull Image
         run: |
           docker pull "urbancode/${{ github.event.inputs.fileName }}"
-      - name: Checkout History
-        uses: actions/checkout@v3
-        with: 
-          fetch-depth: 1
-      - name: Set up sparse checkout
+      - name: Set up repository
         run: |
+          git init
+          git remote add origin https://github.com/${{ github.repository }}
           git config core.sparseCheckout true
           echo "files/${{ github.event.inputs.folderName }}" > .git/info/sparse-checkout
-          git read-tree -mu HEAD 
+          git pull origin ${{ github.ref }}
       - name: Docker Save as TAR
         run: |
           df -h
