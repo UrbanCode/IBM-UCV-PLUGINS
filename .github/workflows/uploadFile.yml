@@ -47,12 +47,13 @@ jobs:
       - name: Install 7zip
         run: sudo apt-get update && sudo apt-get install -y p7zip-full
       - name: Execute 7zip
-        run: sudo 7z a -v50m "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
+        run: |
+          sudo 7z a -v50m "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
+          sudo cp "/mnt/docker/files/${{ github.event.inputs.folderName }}/*" /home/runner/work/IBM-UCV-PLUGINS/IBM-UCV-PLUGINS/
       - name: Commit changes
         run: |
           pwd
           ls -lR /mnt/docker/files/${{ github.event.inputs.folderName }}/
-          sudo cp "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.*" ./files/${{ github.event.inputs.folderName }}/
           df -h 
           git init
           git config --global user.email "madhavaraoku@hcl.com"
