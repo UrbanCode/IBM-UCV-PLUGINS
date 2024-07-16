@@ -51,9 +51,8 @@ jobs:
       - name: Commit changes
         run: |
           pwd
+          ls -lR /mnt/docker/files/${{ github.event.inputs.folderName }}/
           sudo mv "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.*" ./files/${{ github.event.inputs.folderName }}/
-          ls -lR
-          ls -lR /mnt/docker/files
           df -h 
           git init
           git config --global user.email "madhavaraoku@hcl.com"
