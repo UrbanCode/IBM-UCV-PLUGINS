@@ -51,8 +51,9 @@ jobs:
       - name: Commit changes
         run: |
           pwd
-          ls -la
-          df -h
+          ls -lR
+          ls -lR /mnt/docker/files
+          df -h 
           git init
           git config --global user.email "madhavaraoku@hcl.com"
           git config --global user.name "madhavbk"
