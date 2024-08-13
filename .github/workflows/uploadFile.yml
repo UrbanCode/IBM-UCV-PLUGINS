@@ -61,9 +61,10 @@ jobs:
         run: |
           pwd
           ls -lRa /mnt/docker/files/${{ github.event.inputs.folderName }}/
-          echo "The path in which git initialization executing: " . `pwd`
+          echo "The path in which git initialization executing: "
           ls -lRa
           sudo chmod 777 -R ./files
+          ls -lRa
           git init
           git config --global user.email "madhavaraoku@hcl.com"
           git config --global user.name "madhavbk"
