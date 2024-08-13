@@ -64,7 +64,7 @@ jobs:
           pwd
           ls -lRa /mnt/docker/files/${{ github.event.inputs.folderName }}/
           echo "The path in which git initialization executing: "
-          sudo chown runner:docker files
+          sudo chown -R runner:docker files
           ls -lRa
           git init
           git config --global user.email "madhavaraoku@hcl.com"
