@@ -60,8 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pwd
-          ls -lR /mnt/docker/files/${{ github.event.inputs.folderName }}/
-          df -h 
+          ls -lRa /mnt/docker/files/${{ github.event.inputs.folderName }}/
           git init
           git config --global user.email "madhavaraoku@hcl.com"
           git config --global user.name "madhavbk"
