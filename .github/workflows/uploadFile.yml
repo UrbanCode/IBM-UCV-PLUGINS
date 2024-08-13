@@ -42,9 +42,10 @@ jobs:
           git pull origin ${{ github.ref }}
       - name: Docker Save as TAR
         run: |
+          whoami
           df -h
           ls -ltra
-          sudo docker save -o /mnt/docker/"${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
+          sudo docker --user runner:docker save -o /mnt/docker/"${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           sudo mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
           sudo mv "/mnt/docker/${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
