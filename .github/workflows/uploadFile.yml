@@ -54,13 +54,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y p7zip-full
       - name: Execute 7zip
         run: |
-          sudo 7z a -v50m "/home/runner/work/IBM-UCV-PLUGINS/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
+          sudo 7z a -v50m "/home/runner/work/IBM-UCV-PLUGINS/IBM-UCV-PLUGINS/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar.7z" "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Commit changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pwd
           ls -lRa /mnt/docker/files/${{ github.event.inputs.folderName }}/
+          echo "The path in which git initialization executing: " . pwd
+          ls -lRa
           git init
           git config --global user.email "madhavaraoku@hcl.com"
           git config --global user.name "madhavbk"
