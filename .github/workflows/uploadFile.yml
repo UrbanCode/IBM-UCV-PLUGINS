@@ -45,11 +45,12 @@ jobs:
           whoami
           df -h
           ls -ltra
-          sudo docker --user runner:docker save -o /mnt/docker/"${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
+          sudo docker save -o /mnt/docker/"${{ github.event.inputs.fileName }}.tar" "urbancode/${{ github.event.inputs.fileName }}"
           ls -a
           sudo mkdir -p "/mnt/docker/files/${{ github.event.inputs.folderName }}"
           sudo mv "/mnt/docker/${{ github.event.inputs.fileName }}.tar" "/mnt/docker/files/${{ github.event.inputs.folderName }}/"
           cd /mnt/docker/files/${{ github.event.inputs.folderName }}/
+          sudo chown runner:docker /mnt/docker/files/${{ github.event.inputs.folderName }}/
           ls -lh "/mnt/docker/files/${{ github.event.inputs.folderName }}/${{ github.event.inputs.fileName }}.tar"
       - name: Install 7zip
         run: sudo apt-get update && sudo apt-get install -y p7zip-full
@@ -63,8 +64,6 @@ jobs:
           pwd
           ls -lRa /mnt/docker/files/${{ github.event.inputs.folderName }}/
           echo "The path in which git initialization executing: "
-          ls -lRa
-          sudo chmod 777 -R ./files
           ls -lRa
           git init
           git config --global user.email "madhavaraoku@hcl.com"
